@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Exceptions\BadUrlException;
 use App\Models\Url;
 use Illuminate\Support\Facades\Http;
 
@@ -12,7 +13,7 @@ class Shortener
 
     protected static function verifyUrlExists($url): bool
     {
-        return (!(Http::get($url)->status() == 404));
+        return (Http::get($url)->successful());
     }
 
     protected static function generateRandomString(int $length): string
@@ -31,9 +32,15 @@ class Shortener
         return str_shuffle($randString);
     }
 
+
+    /**
+     * @throws BadUrlException
+     */
     public static function shorten(string $url): string
     {
-        // TODO: check if url exists
+        if ((config('shorturl.validate_url')) && !self::verifyUrlExists($url)) {
+            throw new BadUrlException("$url does not exist");
+        }
 
         $shortUrl = self::generateRandomString(config('shorturl.max-length', 7));
 
