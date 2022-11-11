@@ -1,18 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Models\Url;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get("/r/{short}", function (string $short){
+    $url = Url::where('short_url_string','LIKE',$short)->firstOrFail();
+    echo "redirect to ".$url->original_url;
+    //Route::redirect($url->original_url);
+})->name('redirect');
