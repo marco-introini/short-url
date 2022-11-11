@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Shortener;
+use App\Http\Requests\UrlRequest;
 use App\Http\Resources\UrlResource;
 use App\Models\Url;
 use Illuminate\Http\Request;
@@ -15,15 +17,18 @@ class UrlApiController extends Controller
         );
     }
 
-    public function store(Request $request)
+    public function store(UrlRequest $request)
     {
+        $url = Url::create([
+            'original_url' => $request->url,
+            'short_url_string' => Shortener::shorten($request->url),
+            'user_id' => $request->user()->id,
+        ]);
+
+        return new UrlResource($url);
     }
 
-    public function show(Url $url)
-    {
-    }
-
-    public function update(Request $request, Url $url)
+    public function update(UrlRequest $request, Url $url)
     {
     }
 
