@@ -9,6 +9,6 @@ Route::get('/', function () {
 
 Route::get("/r/{short}", function (string $short){
     $url = Url::where('short_url_string','LIKE',$short)->firstOrFail();
-    echo "redirect to ".$url->original_url;
-    //Route::redirect($url->original_url);
+    //echo "redirect to ".$url->original_url;
+    return redirect($url->original_url);
 })->name('redirect');
