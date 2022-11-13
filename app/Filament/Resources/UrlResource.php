@@ -54,7 +54,7 @@ class UrlResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\UrlCallsRelationManager::class,
         ];
     }
 
