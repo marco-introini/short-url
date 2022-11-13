@@ -10,8 +10,10 @@ class UrlCall extends Model
 {
     use HasFactory;
 
-  public function url(): BelongsTo
-  {
-      return $this->belongsTo(Url::class);
-  }
+    protected $guarded = [];
+
+    public function url(): BelongsTo
+    {
+        return $this->belongsTo(Url::class);
+    }
 }
