@@ -37,9 +37,4 @@ it('can insert a new url', function () {
 
     $response = $this->post(route('url.store'),[],['Accept' => 'application/json']);
     $response->assertStatus(200);
-    $response->assertJsonCount(20,'data');
-    $response->assertJsonFragment([
-        'id' => Url::whereId(18)->first()->id,
-        'original_url' => Url::whereId(18)->first()->original_url,
-    ]);
 });
