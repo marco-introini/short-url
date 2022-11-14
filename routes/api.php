@@ -5,7 +5,9 @@ use App\Http\Controllers\UrlApiController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(RegisterController::class)->group(function () {
-    Route::post('register', 'register');
+    if (config('shorturl.can_register_via_api')) {
+        Route::post('register', 'register');
+    }
     Route::post('login', 'login');
 });
 
