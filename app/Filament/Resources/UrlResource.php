@@ -37,7 +37,9 @@ class UrlResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('original_url'),
+                Tables\Columns\TextColumn::make('original_url')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('shorturl'),
             ])
             ->filters([

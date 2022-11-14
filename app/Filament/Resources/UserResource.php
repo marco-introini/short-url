@@ -28,6 +28,8 @@ class UserResource extends Resource
                 Forms\Components\TextInput::make('email')
                     ->email()
                     ->required(),
+                Forms\Components\Toggle::make('is_superadmin')
+                    ->required(),
             ]);
     }
 
@@ -35,8 +37,16 @@ class UserResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name'),
-                Tables\Columns\TextColumn::make('email'),
+                Tables\Columns\TextColumn::make('name')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('email')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('urls_count')
+                    ->counts('urls')
+                    ->label('Numbers of URLs')
+                    ->sortable(),
             ])
             ->filters([
                 //
@@ -48,14 +58,14 @@ class UserResource extends Resource
                 Tables\Actions\DeleteBulkAction::make(),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -63,5 +73,5 @@ class UserResource extends Resource
             'create' => Pages\CreateUser::route('/create'),
             'edit' => Pages\EditUser::route('/{record}/edit'),
         ];
-    }    
+    }
 }
