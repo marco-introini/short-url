@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
              'name' => 'Admin Default User',
              'email' => 'mint.dev@pm.me',
              'password' => Hash::make('password'),
+             'is_superadmin' => true,
          ]);
 
          User::factory(5)->create();
