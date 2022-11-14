@@ -18,7 +18,7 @@ class UrlResource extends Resource
 {
     protected static ?string $model = Url::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-collection';
+    protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
 
     public static function getEloquentQuery(): Builder
     {
