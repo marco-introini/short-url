@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\UrlCall;
 use App\Models\User;
 use App\Models\Url;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -56,22 +57,6 @@ it('can delete an url', function () {
     assertDatabaseMissing('urls',['original_url' => $url]);
 });
 
-it('can get a single url', function () {
-    $user = User::factory()->create();
-    $url = Url::factory(['user_id' => $user->id])->create();
-
-    dump ($url);
-
-    Sanctum::actingAs($user);
-
-    $response = $this->get(route('url.show',['url' => $url]),[],['Accept' => 'application/json']);
-    $response->assertStatus(200);
-    $response->assertJsonFragment([
-        'id' => $url->id,
-        'original_url' => $url->original_url,
-    ]);
-});
-
 it('can update an url', function () {
     $user = User::factory()->create();
     $url = Url::factory(['user_id' => $user->id])->create();
@@ -88,3 +73,34 @@ it('can update an url', function () {
     assertDatabaseMissing('urls',['original_url' => $url]);
     assertDatabaseHas('urls',['original_url' => $newUrl]);
 });
+
+it('can get a single url', function () {
+    $user = User::factory()->create();
+    $url = Url::factory(['user_id' => $user->id])->create();
+
+    Sanctum::actingAs($user);
+
+    $response = $this->get(route('url.show',['url' => $url]),[],['Accept' => 'application/json']);
+    $response->assertStatus(200);
+    $response->assertJsonFragment([
+        'id' => $url->id,
+        'original_url' => $url->original_url,
+    ]);
+});
+
+test('the single url API returns call numbers', function () {
+    $user = User::factory()->create();
+    $url = Url::factory(['user_id' => $user->id])->create();
+    $urlCalls = UrlCall::factory(10,['url_id' => $url->id])->create();
+
+    Sanctum::actingAs($user);
+
+    $response = $this->get(route('url.show',['url' => $url]),[],['Accept' => 'application/json']);
+    $response->assertStatus(200);
+    $response->assertJsonFragment([
+        'id' => $url->id,
+        'original_url' => $url->original_url,
+    ]);
+
+});
+
