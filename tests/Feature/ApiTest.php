@@ -5,6 +5,10 @@ use App\Models\Url;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 
+use function Pest\Faker\faker;
+use function Pest\Laravel\assertDatabaseHas;
+use function Pest\Laravel\assertDatabaseMissing;
+
 uses(RefreshDatabase::class);
 
 test('sanctum blocks not logged user', function () {
@@ -32,9 +36,55 @@ it('can get all my urls', function () {
 
 it('can insert a new url', function () {
     $user = User::factory()->create();
+    $newUrl = faker()->url;
 
     Sanctum::actingAs($user);
 
-    $response = $this->post(route('url.store'),[],['Accept' => 'application/json']);
+    $response = $this->post(route('url.store'),['url' => $newUrl],['Accept' => 'application/json']);
+    $response->assertStatus(201);
+    assertDatabaseHas('urls',['original_url' => $newUrl]);
+});
+
+it('can delete an url', function () {
+    $user = User::factory()->create();
+    $url = Url::factory(['user_id' => $user->id])->create();
+
+    Sanctum::actingAs($user);
+
+    $response = $this->delete(route('url.destroy',['url' => $url]),[],['Accept' => 'application/json']);
+    $response->assertStatus(204);
+    assertDatabaseMissing('urls',['original_url' => $url]);
+});
+
+it('can get a single url', function () {
+    $user = User::factory()->create();
+    $url = Url::factory(['user_id' => $user->id])->create();
+
+    dump ($url);
+
+    Sanctum::actingAs($user);
+
+    $response = $this->get(route('url.show',['url' => $url]),[],['Accept' => 'application/json']);
     $response->assertStatus(200);
+    $response->assertJsonFragment([
+        'id' => $url->id,
+        'original_url' => $url->original_url,
+    ]);
+});
+
+it('can update an url', function () {
+    $user = User::factory()->create();
+    $url = Url::factory(['user_id' => $user->id])->create();
+    $newUrl = faker()->url;
+
+    Sanctum::actingAs($user);
+
+    $response = $this->patch(route('url.update',['url' => $url]),['url' => $newUrl],['Accept' => 'application/json']);
+    $response->assertStatus(200);
+    $response->assertJsonFragment([
+        'id' => $url->id,
+        'original_url' => $newUrl,
+    ]);
+    assertDatabaseMissing('urls',['original_url' => $url]);
+    assertDatabaseHas('urls',['original_url' => $newUrl]);
 });
