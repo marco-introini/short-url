@@ -9,6 +9,7 @@ use App\Models\Url;
 use App\Traits\BaseApiResponse;
 use Exception;
 use Illuminate\Http\Request;
+use Throwable;
 
 class UrlApiController extends Controller
 {
@@ -53,7 +54,7 @@ class UrlApiController extends Controller
         try {
             $url->deleteOrFail();
         }
-        catch (Exception $e) {
+        catch (Exception|Throwable $e) {
             return $this->sendErrorResponse(null,'URL Not Found',500);
         }
 

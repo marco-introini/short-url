@@ -16,7 +16,7 @@ test('sanctum blocks not logged user', function () {
     $user = User::factory()->create();
     Url::factory(20)->create();
 
-    $response = $this->get(route('url.index'),['Accept' => 'application/json']);
+    $response = $this->get(route('url.index'), ['Accept' => 'application/json']);
     $response->assertUnauthorized();
 });
 
@@ -28,7 +28,7 @@ it('can get all my urls', function () {
 
     $response = $this->get(route('url.index'));
     $response->assertStatus(200);
-    $response->assertJsonCount(20,'data');
+    $response->assertJsonCount(20, 'data');
     $response->assertJsonFragment([
         'id' => Url::whereId(18)->first()->id,
         'original_url' => Url::whereId(18)->first()->original_url,
@@ -41,9 +41,9 @@ it('can insert a new url', function () {
 
     Sanctum::actingAs($user);
 
-    $response = $this->post(route('url.store'),['url' => $newUrl],['Accept' => 'application/json']);
+    $response = $this->post(route('url.store'), ['url' => $newUrl], ['Accept' => 'application/json']);
     $response->assertStatus(201);
-    assertDatabaseHas('urls',['original_url' => $newUrl]);
+    assertDatabaseHas('urls', ['original_url' => $newUrl]);
 });
 
 it('can delete an url', function () {
@@ -52,9 +52,21 @@ it('can delete an url', function () {
 
     Sanctum::actingAs($user);
 
-    $response = $this->delete(route('url.destroy',['url' => $url]),[],['Accept' => 'application/json']);
+    $response = $this->delete(route('url.destroy', ['url' => $url]), [], ['Accept' => 'application/json']);
     $response->assertStatus(204);
-    assertDatabaseMissing('urls',['original_url' => $url]);
+    assertDatabaseMissing('urls', ['original_url' => $url]);
+});
+
+it('cannot delete another user url', function () {
+    $user = User::factory(2)->create();
+    Url::factory(['user_id' => $user[0]->id])->create();
+    $url = Url::factory(['user_id' => $user[1]->id])->create();
+
+    Sanctum::actingAs($user[0]);
+
+    $response = $this->delete(route('url.destroy', ['url' => $url]), [], ['Accept' => 'application/json']);
+    $response->assertNotFound();
+    assertDatabaseHas('urls', ['original_url' => $url->original_url]);
 });
 
 it('can update an url', function () {
@@ -64,14 +76,29 @@ it('can update an url', function () {
 
     Sanctum::actingAs($user);
 
-    $response = $this->patch(route('url.update',['url' => $url]),['url' => $newUrl],['Accept' => 'application/json']);
+    $response = $this->patch(route('url.update', ['url' => $url]), ['url' => $newUrl], ['Accept' => 'application/json']
+    );
     $response->assertStatus(200);
     $response->assertJsonFragment([
         'id' => $url->id,
         'original_url' => $newUrl,
     ]);
-    assertDatabaseMissing('urls',['original_url' => $url]);
-    assertDatabaseHas('urls',['original_url' => $newUrl]);
+    assertDatabaseMissing('urls', ['original_url' => $url]);
+    assertDatabaseHas('urls', ['original_url' => $newUrl]);
+});
+
+it('cannot update an url of another user', function () {
+    $user = User::factory(2)->create();
+    Url::factory(['user_id' => $user[0]->id])->create();
+    $url = Url::factory(['user_id' => $user[1]->id])->create();
+    $newUrl = faker()->url;
+
+    Sanctum::actingAs($user[0]);
+
+    $response = $this->patch(route('url.update', ['url' => $url]), ['url' => $newUrl], ['Accept' => 'application/json']);
+    $response->assertNotFound();
+
+    assertDatabaseMissing('urls', ['original_url' => $newUrl]);
 });
 
 it('can get a single url', function () {
@@ -80,7 +107,7 @@ it('can get a single url', function () {
 
     Sanctum::actingAs($user);
 
-    $response = $this->get(route('url.show',['url' => $url]),[],['Accept' => 'application/json']);
+    $response = $this->get(route('url.show', ['url' => $url]), [], ['Accept' => 'application/json']);
     $response->assertStatus(200);
     $response->assertJsonFragment([
         'id' => $url->id,
@@ -88,19 +115,23 @@ it('can get a single url', function () {
     ]);
 });
 
-test('the single url API returns call numbers', function () {
+test('the single url API returns call numbers and list', function () {
     $user = User::factory()->create();
     $url = Url::factory(['user_id' => $user->id])->create();
-    $urlCalls = UrlCall::factory(10,['url_id' => $url->id])->create();
+    UrlCall::factory(10, ['url_id' => $url->id])->create();
+
+    $urlCall = UrlCall::inRandomOrder()->first();
 
     Sanctum::actingAs($user);
 
-    $response = $this->get(route('url.show',['url' => $url]),[],['Accept' => 'application/json']);
+    $response = $this->get(route('url.show', ['url' => $url]), [], ['Accept' => 'application/json']);
     $response->assertStatus(200);
     $response->assertJsonFragment([
-        'id' => $url->id,
-        'original_url' => $url->original_url,
+        'access_count' => UrlCall::where('url_id','=',$url->id)->count(),
     ]);
-
+    $response->assertJsonFragment([
+        'timestamp' => $urlCall->created_at,
+        'ip_address' => $urlCall->ip_address,
+    ]);
 });
 
