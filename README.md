@@ -30,6 +30,17 @@ This will create the database and download every composer package needed
 
 You can control everything using the provided administration area, located at `/admin` route.
 
+### Url Administration
+
+You can list and create the complete URLs for your user in this panel:
+
+![Url list](readme_img1.png)
+
+Inside the Url detail you can see the complete log calls
+
+![Url list](readme_img2.png)
+
+
 ## APIs
 
 ### Registration and Login

@@ -3,7 +3,6 @@
 namespace App\Http\Resources;
 
 use App\Models\UrlCall;
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UrlResource extends JsonResource
@@ -24,6 +23,7 @@ class UrlResource extends JsonResource
         foreach ($lastCalls as $call) {
             $arrayLastCalls[] = [
                 'timestamp' => $call->created_at,
+                'ip_address' => $call->ip_address,
             ];
         }
 
