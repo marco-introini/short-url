@@ -6,6 +6,22 @@ Open source (MIT license) project for creating a self-hosted URL shortener using
 
 ### Using Docker
 
+There is a preconfigured .env.docker file you can customize if you want. The Dockerfile install PHP 8.1 with Apache2 and NodeJS.
+
+To use it simply execute:
+
+```
+docker compose up 
+```
+
+To create the first environment inside the container terminal go in /var/www/html directory and execute `make first_production`
+
+Now you can use admin area and APIs
+
+```
+http://localhost:8005/admin
+```
+
 ### Local installation
 
 You can use this program in any directory you want.

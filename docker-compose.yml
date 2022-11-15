@@ -1,0 +1,30 @@
+version: '3.8'
+
+networks:
+  short-url:
+
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+    networks:
+      - short-url
+    depends_on:
+      - db
+    restart: always
+    working_dir: /var/www/
+    ports:
+      - "8005:80"
+    environment:
+      WAIT_HOSTS: db:3306
+
+  db:
+    image: mariadb
+    restart: always
+    networks:
+      - short-url
+    environment:
+      MYSQL_ROOT_PASSWORD: MYSQL_ROOT_PASSWORD
+      MYSQL_DATABASE: short-url
+      MYSQL_USER: short-url
+      MYSQL_PASSWORD: changeThis
