@@ -11,10 +11,19 @@ use Exception;
 use Illuminate\Http\Request;
 use Throwable;
 
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
+
+#[OpenApi\PathItem]
 class UrlApiController extends Controller
 {
     use BaseApiResponse;
 
+    /**
+     * Get all Urls
+     *
+     * Get all Urls associated to logged user, with usage count and last 100 calls
+     */
+    #[OpenApi\Operation]
     public function index(Request $request)
     {
         return UrlResource::collection(
@@ -22,6 +31,12 @@ class UrlApiController extends Controller
         );
     }
 
+    /**
+     * Create an Url
+     *
+     * Create a new Url with short-url associated to logge-in user
+     */
+    #[OpenApi\Operation]
     public function store(UrlRequest $request)
     {
         $url = Url::create([
@@ -33,6 +48,12 @@ class UrlApiController extends Controller
         return new UrlResource($url);
     }
 
+    /**
+     * Update an Url
+     *
+     * Update a single Url associated to the user
+     */
+    #[OpenApi\Operation]
     public function update(UrlRequest $request, Url $url)
     {
         if (!$this->checkCorrectUser($url)) {
@@ -45,6 +66,12 @@ class UrlApiController extends Controller
         return new UrlResource($url);
     }
 
+    /**
+     * Delete an Url
+     *
+     * Delete a single Url associated to the user
+     */
+    #[OpenApi\Operation]
     public function destroy(Url $url)
     {
         if (!$this->checkCorrectUser($url)) {
@@ -61,6 +88,12 @@ class UrlApiController extends Controller
         return response('',204);
     }
 
+    /**
+     * Get a single Url
+     *
+     * Get a single Urls associated to logged user, with usage count and last 100 calls
+     */
+    #[OpenApi\Operation]
     public function show(Url $url)
     {
         if (!$this->checkCorrectUser($url)) {

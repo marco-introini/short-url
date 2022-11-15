@@ -12,7 +12,8 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "spatie/laravel-backup": "^8.1",
-        "spatie/laravel-ray": "^1.31"
+        "spatie/laravel-ray": "^1.31",
+        "vyuldashev/laravel-openapi": "^1.8"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

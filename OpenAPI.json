@@ -1,0 +1,80 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Short Url",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http:\/\/short-url.test"
+        }
+    ],
+    "paths": {
+        "\/api\/register": {
+            "post": {
+                "summary": "Register a new user",
+                "description": "This API call register a new user for Short-Url"
+            }
+        },
+        "\/api\/login": {
+            "post": {
+                "summary": "Login",
+                "description": "User login function. It returns the Bearer Token"
+            }
+        },
+        "\/api\/url": {
+            "get": {
+                "summary": "Get all Urls",
+                "description": "Get all Urls associated to logged user, with usage count and last 100 calls"
+            },
+            "post": {
+                "summary": "Create an Url",
+                "description": "Create a new Url with short-url associated to logge-in user"
+            }
+        },
+        "\/api\/url\/{url}": {
+            "get": {
+                "summary": "Get a single Url",
+                "description": "Get a single Urls associated to logged user, with usage count and last 100 calls",
+                "parameters": [
+                    {
+                        "name": "url",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update an Url",
+                "description": "Update a single Url associated to the user",
+                "parameters": [
+                    {
+                        "name": "url",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete an Url",
+                "description": "Delete a single Url associated to the user",
+                "parameters": [
+                    {
+                        "name": "url",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -10,10 +10,19 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Validator;
 
+use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
+
+#[OpenApi\PathItem]
 class RegisterController extends Controller
 {
     use BaseApiResponse;
 
+    /**
+     * Register a new user
+     *
+     * This API call register a new user for Short-Url
+     */
+    #[OpenApi\Operation]
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -40,6 +49,12 @@ class RegisterController extends Controller
         return $this->sendSuccessResponse($success, 'User registered successfully.');
     }
 
+    /**
+     * Login
+     *
+     * User login function. It returns the Bearer Token
+     */
+    #[OpenApi\Operation]
     public function login(Request $request)
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

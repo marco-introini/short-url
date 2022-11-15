@@ -59,14 +59,46 @@ Inside the Url detail you can see the complete log calls
 
 ## APIs
 
+You can see the OpenApi version of this APIs in OpenAPI.json file
+
 ### Registration and Login
+
+To register a new user (normal, not administration user)
 
 /api/register
 
+For obtaining the Bearer Token:
+
 /api/login
+
+Example Input
+
+```
+curl --request POST \
+--url http://short-url.test/api/login \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data email=mint.dev@pm.me \
+--data password=password
+```
 
 ### Urls API
 
-/api/url
-
 Protected with Sanctum, so it needs the bearer token obtained via login
+
+| Method | Url           | Note                               | Result Status |
+|--------|---------------|------------------------------------|---------------|
+| GET    | /api/url      | List all user Urls                 | 200           |
+| POST   | /api/url      | Create a new Url and get short url | 201           |
+| PUT    | /api/url/<ID> | Modify the Url                     | 200           |
+| GET    | /api/url/<ID> | Get information about a single Url | 200           |
+| DELETE | /api/url/<ID> | Delete a single Url                | 204           |
+
+#### Create a new Url example
+
+Input:
+
+```json
+{
+"url":"http://test.com/test"
+}
+```
