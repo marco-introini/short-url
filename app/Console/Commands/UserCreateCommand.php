@@ -57,5 +57,7 @@ class UserCreateCommand extends Command
 
         $this->info("User created!");
 
+        return 0;
+
     }
 }
