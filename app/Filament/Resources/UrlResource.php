@@ -20,6 +20,8 @@ class UrlResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-globe-alt';
 
+    protected static ?int $navigationSort = 2;
+
     public static function getEloquentQuery(): Builder
     {
         return Url::where('user_id', '=', auth()->user()->id);

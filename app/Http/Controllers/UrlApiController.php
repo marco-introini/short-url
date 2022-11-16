@@ -8,6 +8,7 @@ use App\Http\Resources\UrlResource;
 use App\Models\Url;
 use App\Traits\BaseApiResponse;
 use Exception;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -92,6 +93,9 @@ class UrlApiController extends Controller
      * Get a single Url
      *
      * Get a single Urls associated to logged user, with usage count and last 100 calls
+     *
+     * @param  Url  $url
+     * @return UrlResource|JsonResponse
      */
     #[OpenApi\Operation]
     public function show(Url $url)
