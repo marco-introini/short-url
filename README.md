@@ -42,11 +42,19 @@ You can use this program in any directory you want.
 
 This will create the database and download every composer package needed
 
+## Create Users
+
+There is a console command for creating users (both administrators and normal users)
+
+```
+php artisan user:create
+```
+
 ## GUI
 
 You can control everything using the provided administration area, located at `/admin` route.
 
-### Url Administration
+### Administration
 
 You can list and create the complete URLs for your user in this panel:
 
@@ -56,6 +64,7 @@ Inside the Url detail you can see the complete log calls
 
 ![Url list](readme_img2.png)
 
+For users which are super administration is also possible to administer the users
 
 ## APIs
 
