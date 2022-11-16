@@ -50,6 +50,15 @@ There is a console command for creating users (both administrators and normal us
 php artisan user:create
 ```
 
+### Configuration
+
+In the env file you can configure:
+
+- SHORT_URL_MAX_LENGTH: the length of the short url string generated
+- SHORT_URL_VALIDATE_URL: if the passed Url must be validated via cUrl before saving
+- SHORT_URL_CAN_REGISTER_VIA_API: if a user can be registered via API (WARNING: disable for public access server!)
+
+
 ## GUI
 
 You can control everything using the provided administration area, located at `/admin` route.
