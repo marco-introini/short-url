@@ -62,9 +62,11 @@ You can list and create the complete URLs for your user in this panel:
 
 Inside the Url detail you can see the complete log calls
 
-![Url list](readme_img2.png)
+![Url calls](readme_img2.png)
 
-For users which are super administration is also possible to administer the users
+For users which are super administration is also possible to create, edit and delete users
+
+![Users list](readme_img3.png)
 
 ## APIs
 

@@ -76,4 +76,9 @@ class UrlResource extends Resource
         return ($url->user_id == $user->id);
     }
 
+    protected static function getNavigationBadge(): ?string
+    {
+        return self::getModel()::where('user_id','=',auth()->user()->id)->count();
+    }
+
 }
