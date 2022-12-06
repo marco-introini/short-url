@@ -6,7 +6,7 @@ use App\Models\Url;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::get("/r/{short}", function (string $short){
     $url = Url::where('short_url_string','LIKE',$short)->firstOrFail();
