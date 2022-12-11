@@ -9,7 +9,11 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-LETDWXE4J3"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
         gtag('js', new Date());
 
         gtag('config', 'G-LETDWXE4J3');
@@ -62,10 +66,12 @@
                         <span class="block">Short</span>
                         <span class="block font-bold">URL</span>
                     </h5>
-                    <button type="submit"
-                            class="inline-flex items-center justify-center px-8 py-4 mr-6 text-xl font-medium tracking-wide text-white transition duration-200 bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none"
-                            data-primary="green-400" data-rounded="">View on GitHub
-                    </button>
+                    <form action="https://github.com/marco-introini/short-url">
+                        <button type="submit"
+                                class="inline-flex items-center justify-center px-8 py-4 mr-6 text-xl font-medium tracking-wide text-white transition duration-200 bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none"
+                                data-primary="green-400" data-rounded="">View on GitHub
+                        </button>
+                    </form>
                 </div>
             </div>
             <div class="relative w-full h-auto pt-16 lg:w-2/3">
@@ -80,7 +86,8 @@
             <div class="flex flex-col items-center w-full pr-5 lg:w-1/3 lg:flex-row">
                 <p class="w-full mb-5 text-base text-center text-green-600 lg:text-left lg:w-48 lg:mb-0"
                    data-primary="green-400">An OS Software by <br>Marco Introini</p>
-                <a href="https://marcointroini.it" class="flex-shrink-0 px-4 py-3 text-white bg-green-500 border-green-700"
+                <a href="https://marcointroini.it"
+                   class="flex-shrink-0 px-4 py-3 text-white bg-green-500 border-green-700"
                    data-primary="green-400" data-rounded="">Visit Home Page</a>
             </div>
             <div class="hidden w-2/3 lg:block"></div>
