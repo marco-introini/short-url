@@ -6,7 +6,6 @@ use App\Models\Url;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Sanctum\Sanctum;
 
-use function Pest\Faker\faker;
 use function Pest\Laravel\assertDatabaseHas;
 use function Pest\Laravel\assertDatabaseMissing;
 
@@ -37,7 +36,7 @@ it('can get all my urls', function () {
 
 it('can insert a new url', function () {
     $user = User::factory()->create();
-    $newUrl = faker()->url;
+    $newUrl = fake()->url;
 
     Sanctum::actingAs($user);
 
@@ -72,7 +71,7 @@ it('cannot delete another user url', function () {
 it('can update an url', function () {
     $user = User::factory()->create();
     $url = Url::factory(['user_id' => $user->id])->create();
-    $newUrl = faker()->url;
+    $newUrl = fake()->url;
 
     Sanctum::actingAs($user);
 
@@ -91,7 +90,7 @@ it('cannot update an url of another user', function () {
     $user = User::factory(2)->create();
     Url::factory(['user_id' => $user[0]->id])->create();
     $url = Url::factory(['user_id' => $user[1]->id])->create();
-    $newUrl = faker()->url;
+    $newUrl = fake()->url;
 
     Sanctum::actingAs($user[0]);
 
