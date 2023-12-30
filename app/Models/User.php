@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -44,13 +45,22 @@ class User extends Authenticatable implements FilamentUser
         'email_verified_at' => 'datetime',
     ];
 
-    public function canAccessFilament(): bool
+    public function canAccessPanel(Panel $panel): bool
     {
-        return true;
+        return match ($panel->getId()) {
+            'super-admin' => $this->isSuperAdmin(),
+            default => !$this->isSuperAdmin(),
+        };
     }
 
     public function urls(): HasMany
     {
         return $this->hasMany(Url::class);
     }
+
+    public function isSuperAdmin(): bool
+    {
+        return $this->is_superadmin;
+    }
+
 }

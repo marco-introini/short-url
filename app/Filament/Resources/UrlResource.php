@@ -7,9 +7,9 @@ use App\Filament\Resources\UrlResource\RelationManagers;
 use App\Models\Url;
 use App\Models\User;
 use Filament\Forms;
-use Filament\Resources\Form;
+use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Resources\Table;
+use Filament\Tables\Table;
 use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -76,7 +76,7 @@ class UrlResource extends Resource
         return ($url->user_id == $user->id);
     }
 
-    protected static function getNavigationBadge(): ?string
+    public static function getNavigationBadge(): ?string
     {
         return self::getModel()::where('user_id','=',auth()->user()->id)->count();
     }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources\UrlResource\Pages;
 
 use App\Filament\Resources\UrlResource;
+use Filament\Actions\DeleteAction;
 use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
@@ -10,10 +11,10 @@ class EditUrl extends EditRecord
 {
     protected static string $resource = UrlResource::class;
 
-    protected function getActions(): array
+    protected function getHeaderActions(): array
     {
         return [
-            Actions\DeleteAction::make(),
+            DeleteAction::make(),
         ];
     }
 
