@@ -24,6 +24,7 @@ class UrlResource extends Resource
 
     public static function getEloquentQuery(): Builder
     {
+        // TODO use global scope
         return Url::where('user_id', '=', auth()->user()->id);
     }
 
