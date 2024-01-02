@@ -19,8 +19,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
-
          User::factory()->create([
              'name' => 'Admin Default User',
              'email' => 'admin@example.com',
@@ -32,7 +30,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Default User',
             'email' => 'user@example.com',
             'password' => Hash::make('password'),
-            'is_superadmin' => true,
+            'is_superadmin' => false,
         ]);
 
          User::factory(5)->create();
