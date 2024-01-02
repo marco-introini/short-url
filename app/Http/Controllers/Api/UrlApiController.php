@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Helpers\Shortener;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\UrlRequest;
 use App\Http\Resources\UrlResource;
 use App\Models\Url;
@@ -11,7 +12,6 @@ use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Throwable;
-
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
 #[OpenApi\PathItem]
@@ -28,7 +28,7 @@ class UrlApiController extends Controller
     public function index(Request $request)
     {
         return UrlResource::collection(
-            Url::where('user_id','=',$request->user()->id)->get()
+            Url::all()
         );
     }
 
