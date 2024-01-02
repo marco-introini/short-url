@@ -22,12 +22,6 @@ class UrlResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
-    public static function getEloquentQuery(): Builder
-    {
-        // TODO use global scope
-        return Url::where('user_id', '=', auth()->user()->id);
-    }
-
     public static function form(Form $form): Form
     {
         return $form
