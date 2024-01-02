@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\UrlResource\Pages;
+namespace App\Filament\User\Resources\UrlResource\Pages;
 
-use App\Filament\Resources\UrlResource;
+use App\Filament\User\Resources\UrlResource;
 use App\Helpers\Shortener;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\CreateRecord;
 
 class CreateUrl extends CreateRecord

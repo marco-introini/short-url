@@ -23,10 +23,17 @@ class DatabaseSeeder extends Seeder
 
          User::factory()->create([
              'name' => 'Admin Default User',
-             'email' => 'mint.dev@pm.me',
+             'email' => 'admin@example.com',
              'password' => Hash::make('password'),
              'is_superadmin' => true,
          ]);
+
+        User::factory()->create([
+            'name' => 'Default User',
+            'email' => 'user@example.com',
+            'password' => Hash::make('password'),
+            'is_superadmin' => true,
+        ]);
 
          User::factory(5)->create();
 

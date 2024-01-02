@@ -61,9 +61,11 @@ In the env file you can configure:
 
 ## GUI
 
-You can control everything using the provided administration area, located at `/admin` route.
+There are two administration areas:
+- one for super admin users for user administration located at `/admin` route
+- one for regular users for URLs administration located at `/user` route
 
-### Administration
+### User Administration
 
 You can list and create the complete URLs for your user in this panel:
 
@@ -122,3 +124,8 @@ Input:
 "url":"http://test.com/test"
 }
 ```
+## Seeder Data
+
+Default users are
+- super admin: admin@example.com / password
+- user: user@example.com / password

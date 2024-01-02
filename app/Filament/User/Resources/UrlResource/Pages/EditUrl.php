@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Filament\Resources\UrlResource\Pages;
+namespace App\Filament\User\Resources\UrlResource\Pages;
 
-use App\Filament\Resources\UrlResource;
+use App\Filament\User\Resources\UrlResource;
 use Filament\Actions\DeleteAction;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
 class EditUrl extends EditRecord

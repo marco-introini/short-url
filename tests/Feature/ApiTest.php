@@ -21,7 +21,9 @@ test('sanctum blocks not logged user', function () {
 
 it('can get all my urls', function () {
     $user = User::factory()->create();
-    Url::factory(20)->create();
+    Url::factory(20)->create([
+        'user_id' => $user->id
+    ]);
 
     Sanctum::actingAs($user);
 

@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\User\Resources;
 
 use App\Filament\Resources\UrlResource\Pages;
 use App\Filament\Resources\UrlResource\RelationManagers;
+use App\Filament\User\Resources;
 use App\Models\Url;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
-use Filament\Tables\Table;
 use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Table;
 
 class UrlResource extends Resource
 {
@@ -53,16 +52,16 @@ class UrlResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\UrlCallsRelationManager::class,
+            Resources\UrlResource\RelationManagers\UrlCallsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListUrls::route('/'),
-            'create' => Pages\CreateUrl::route('/create'),
-            'edit' => Pages\EditUrl::route('/{record}/edit'),
+            'index' => Resources\UrlResource\Pages\ListUrls::route('/'),
+            'create' => Resources\UrlResource\Pages\CreateUrl::route('/create'),
+            'edit' => Resources\UrlResource\Pages\EditUrl::route('/{record}/edit'),
         ];
     }
 
