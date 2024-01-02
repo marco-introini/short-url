@@ -15,9 +15,9 @@ class Url extends Model
 
     protected $guarded = [];
 
-    protected static function boot(): void
+    protected static function booted(): void
     {
-        static::addGlobalScope(UrlByUserScope::class);
+        static::addGlobalScope(new UrlByUserScope);
     }
 
     public function user(): BelongsTo
