@@ -14,7 +14,6 @@ use Illuminate\Http\Request;
 use Throwable;
 use Vyuldashev\LaravelOpenApi\Attributes as OpenApi;
 
-#[OpenApi\PathItem]
 class UrlApiController extends Controller
 {
     use BaseApiResponse;
@@ -24,7 +23,6 @@ class UrlApiController extends Controller
      *
      * Get all Urls associated to logged user, with usage count and last 100 calls
      */
-    #[OpenApi\Operation]
     public function index(Request $request)
     {
         return UrlResource::collection(
@@ -37,7 +35,6 @@ class UrlApiController extends Controller
      *
      * Create a new Url with short-url associated to logge-in user
      */
-    #[OpenApi\Operation]
     public function store(UrlRequest $request)
     {
         $url = Url::create([
@@ -54,7 +51,6 @@ class UrlApiController extends Controller
      *
      * Update a single Url associated to the user
      */
-    #[OpenApi\Operation]
     public function update(UrlRequest $request, Url $url)
     {
         if (!$this->checkCorrectUser($url)) {
@@ -72,7 +68,6 @@ class UrlApiController extends Controller
      *
      * Delete a single Url associated to the user
      */
-    #[OpenApi\Operation]
     public function destroy(Url $url)
     {
         if (!$this->checkCorrectUser($url)) {
@@ -97,7 +92,6 @@ class UrlApiController extends Controller
      * @param  Url  $url
      * @return UrlResource|JsonResponse
      */
-    #[OpenApi\Operation]
     public function show(Url $url)
     {
         if (!$this->checkCorrectUser($url)) {
