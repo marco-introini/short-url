@@ -49,8 +49,10 @@
                 <nav class="flex flex-wrap items-center pt-3 pb-5 mb-4 space-x-5 text-base border-b border-gray-200 md:space-x-12 md:pt-0 md:mb-0 md:border-b-0 md:pr-3 md:mr-3 md:pb-0 :flex">
                     <a href="{{ route('home') }}"
                        class="font-medium leading-6 text-gray-800 hover:text-gray-900">Home</a>
+                    <a href="{{ url('/user') }}"
+                       class="font-medium leading-6 text-gray-800 hover:text-gray-900">User Login/Register</a>
                     <a href="{{ url('/admin') }}"
-                       class="font-medium leading-6 text-gray-800 hover:text-gray-900">Login</a>
+                       class="font-medium leading-6 text-gray-800 hover:text-gray-900">Admin Login</a>
                 </nav>
             </div>
         </div>
