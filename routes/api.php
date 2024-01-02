@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\Api\UrlApiController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\UrlApiController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(RegisterController::class)->group(function () {
