@@ -2,7 +2,9 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Resources\UserResource\Pages;
+use App\Filament\Admin\Resources\UserResource\Pages\CreateUser;
+use App\Filament\Admin\Resources\UserResource\Pages\EditUser;
+use App\Filament\Admin\Resources\UserResource\Pages\ListUsers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -11,8 +13,6 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
-
-//use App\Filament\Resources\UserResource\RelationManagers;
 
 class UserResource extends Resource
 {
@@ -89,9 +89,9 @@ class UserResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => \App\Filament\Admin\Resources\UserResource\Pages\ListUsers::route('/'),
-            'create' => \App\Filament\Admin\Resources\UserResource\Pages\CreateUser::route('/create'),
-            'edit' => \App\Filament\Admin\Resources\UserResource\Pages\EditUser::route('/{record}/edit'),
+            'index' => ListUsers::route('/'),
+            'create' => CreateUser::route('/create'),
+            'edit' => EditUser::route('/{record}/edit'),
         ];
     }
 

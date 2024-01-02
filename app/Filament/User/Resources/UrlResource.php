@@ -2,9 +2,10 @@
 
 namespace App\Filament\User\Resources;
 
-use App\Filament\Resources\UrlResource\Pages;
-use App\Filament\Resources\UrlResource\RelationManagers;
-use App\Filament\User\Resources;
+use App\Filament\User\Resources\UrlResource\Pages\CreateUrl;
+use App\Filament\User\Resources\UrlResource\Pages\EditUrl;
+use App\Filament\User\Resources\UrlResource\Pages\ListUrls;
+use App\Filament\User\Resources\UrlResource\RelationManagers\UrlCallsRelationManager;
 use App\Models\Url;
 use App\Models\User;
 use Filament\Forms;
@@ -52,16 +53,16 @@ class UrlResource extends Resource
     public static function getRelations(): array
     {
         return [
-            Resources\UrlResource\RelationManagers\UrlCallsRelationManager::class,
+            UrlCallsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Resources\UrlResource\Pages\ListUrls::route('/'),
-            'create' => Resources\UrlResource\Pages\CreateUrl::route('/create'),
-            'edit' => Resources\UrlResource\Pages\EditUrl::route('/{record}/edit'),
+            'index' => ListUrls::route('/'),
+            'create' => CreateUrl::route('/create'),
+            'edit' => EditUrl::route('/{record}/edit'),
         ];
     }
 
