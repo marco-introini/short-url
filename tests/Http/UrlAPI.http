@@ -1,0 +1,121 @@
+POST {{hostname}}/api/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "user@example.com",
+    "password": "password"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+
+    client.test("Response content-type is json", function() {
+        var type = response.contentType.mimeType;
+        client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+    });
+
+    client.global.set("auth_token", response.body.data.token);
+%}
+
+###
+
+// list Urls
+GET {{hostname}}/api/url
+Authorization: Bearer {{auth_token}}
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+
+    client.test("Response content-type is json", function() {
+        var type = response.contentType.mimeType;
+        client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+    });
+%}
+
+###
+
+// add a new Url
+POST {{hostname}}/api/url
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+    "url":"http://test.com/test2"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 201, "Response status is not 201");
+    });
+
+    client.test("Response content-type is json", function() {
+        var type = response.contentType.mimeType;
+        client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+    });
+
+    client.global.set("url_id", response.body.data.id);
+%}
+
+###
+
+// modify an url
+PUT {{hostname}}/api/url/{{url_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+Accept: application/json
+
+{
+	"url":"http://test.com/test3"
+}
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+
+    client.test("Response content-type is json", function() {
+        var type = response.contentType.mimeType;
+        client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+    });
+%}
+
+###
+
+// get a single url
+PUT {{hostname}}/api/url/{{url_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 200, "Response status is not 200");
+    });
+
+    client.test("Response content-type is json", function() {
+        var type = response.contentType.mimeType;
+        client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
+    });
+%}
+
+###
+
+// delete a single url
+DELETE {{hostname}}/api/url/{{url_id}}
+Authorization: Bearer {{auth_token}}
+Content-Type: application/json
+Accept: application/json
+
+> {%
+    client.test("Request executed successfully", function() {
+        client.assert(response.status === 204, "Response status is not 204");
+    });
+
+%}
