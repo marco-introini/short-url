@@ -40,10 +40,10 @@ update:
 	php artisan config:clear
 	php artisan route:clear
 	php artisan view:clear
-	php artisan livewire:discover
 	php artisan filament:upgrade
 	@echo "UPDATED Laravel Version"
 	php artisan --version
+	npm update
 
 backup:
 	php artisan backup:run

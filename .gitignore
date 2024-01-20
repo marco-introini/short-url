@@ -36,3 +36,15 @@ yarn-error.log
 /public/css/filament/filament/app.css
 /public/css/filament/forms/forms.css
 /public/css/filament/support/support.css
+/.scribe/endpoints/00.yaml
+/.scribe/endpoints/custom.0.yaml
+/.scribe/endpoints.cache/00.yaml
+/.scribe/.filehashes
+/.scribe/auth.md
+/.scribe/intro.md
+/public/vendor/scribe/css/theme-default.print.css
+/public/vendor/scribe/css/theme-default.style.css
+/public/vendor/scribe/images/navbar.png
+/public/vendor/scribe/js/theme-default-4.29.0.js
+/public/vendor/scribe/js/tryitout-4.29.0.js
+/resources/views/scribe/index.blade.php
