@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use App\Models\Url;
 use App\Models\UrlCall;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -10,6 +11,8 @@ class UrlResource extends JsonResource
 
     public function toArray($request): array
     {
+        /** @var Url $this->resource */
+
         $callNumber = UrlCall::where('url_id', '=', $this->id)
             ->orderBy('created_at', 'DESC')
             ->count();
