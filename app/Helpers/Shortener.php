@@ -11,7 +11,7 @@ class Shortener
 
     protected static string $chars = "abcdfghjkmnpqrstvwxyz|ABCDFGHJKLMNPQRSTVWXYZ|0123456789";
 
-    protected static function verifyUrlExists($url): bool
+    protected static function verifyUrlExists(string $url): bool
     {
         return (Http::get($url)->successful());
     }
