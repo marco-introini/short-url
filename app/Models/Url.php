@@ -15,16 +15,23 @@ class Url extends Model
 
     protected $guarded = [];
 
+    #[\Override]
     protected static function booted(): void
     {
         static::addGlobalScope(new UrlByUserScope);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     */
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\UrlCall, $this>
+     */
     public function url_calls(): HasMany
     {
         return $this->hasMany(UrlCall::class);

@@ -7,6 +7,9 @@ use App\Models\UrlCall;
 use App\Models\Url;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UrlCall>
+ */
 class UrlCallFactory extends Factory
 {
     protected $model = UrlCall::class;
@@ -16,7 +19,7 @@ class UrlCallFactory extends Factory
         return [
             'url_id' => Url::withoutGlobalScope(UrlByUserScope::class)
                 ->inRandomOrder()->first(),
-            'ip_address' => $this->faker->ipv4(),
+            'ip_address' => fake()->ipv4(),
         ];
     }
 }

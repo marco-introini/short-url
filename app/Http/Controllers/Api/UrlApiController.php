@@ -77,7 +77,7 @@ class UrlApiController extends Controller
         try {
             $url->deleteOrFail();
         }
-        catch (Exception|Throwable $e) {
+        catch (Exception|Throwable) {
             return $this->sendErrorResponse(null,'URL Not Found',500);
         }
 

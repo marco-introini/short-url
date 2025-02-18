@@ -20,6 +20,7 @@ class UrlRequest extends FormRequest
         return true;
     }
 
+    #[\Override]
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

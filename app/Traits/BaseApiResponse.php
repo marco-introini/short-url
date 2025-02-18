@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 
 trait BaseApiResponse
 {
-    public function sendSuccessResponse(array|null $data, string $message = null, int $code = 200): JsonResponse
+    public function sendSuccessResponse(array|null $data, ?string $message = null, int $code = 200): JsonResponse
     {
         return response()->json([
             'status' => "Request was successful",
@@ -20,7 +20,7 @@ trait BaseApiResponse
      *
      * @return JsonResponse
      */
-    public function sendErrorResponse(array|null $data, string $message = null, $code = 404): JsonResponse
+    public function sendErrorResponse(array|null $data, ?string $message = null, $code = 404): JsonResponse
     {
         return response()->json([
             'status' => "An error has occurred",

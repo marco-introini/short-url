@@ -22,6 +22,7 @@ class UrlResource extends Resource
 
     protected static ?int $navigationSort = 2;
 
+    #[\Override]
     public static function form(Form $form): Form
     {
         return $form
@@ -30,6 +31,7 @@ class UrlResource extends Resource
             ])->columns(1);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -50,6 +52,7 @@ class UrlResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [
@@ -57,6 +60,7 @@ class UrlResource extends Resource
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [

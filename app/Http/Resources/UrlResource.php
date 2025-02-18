@@ -9,6 +9,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class UrlResource extends JsonResource
 {
 
+    #[\Override]
     public function toArray($request): array
     {
         /** @var Url $this->resource */

@@ -10,6 +10,7 @@ class CreateUrl extends CreateRecord
 {
     protected static string $resource = UrlResource::class;
 
+    #[\Override]
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['short_url_string'] = Shortener::shorten($data['original_url']);
@@ -18,6 +19,7 @@ class CreateUrl extends CreateRecord
         return $data;
     }
 
+    #[\Override]
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');

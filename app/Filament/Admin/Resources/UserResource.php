@@ -22,6 +22,7 @@ class UserResource extends Resource
 
     protected static ?int $navigationSort = 1;
 
+    #[\Override]
     public static function form(Form $form): Form
     {
         return $form
@@ -43,6 +44,7 @@ class UserResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function table(Table $table): Table
     {
         return $table
@@ -69,16 +71,19 @@ class UserResource extends Resource
             ]);
     }
 
+    #[\Override]
     public static function canView(Model $record): bool
     {
         return auth()->user()->is_superadmin;
     }
 
+    #[\Override]
     public static function canViewAny(): bool
     {
         return auth()->user()->is_superadmin;
     }
 
+    #[\Override]
     public static function getRelations(): array
     {
         return [
@@ -86,6 +91,7 @@ class UserResource extends Resource
         ];
     }
 
+    #[\Override]
     public static function getPages(): array
     {
         return [
