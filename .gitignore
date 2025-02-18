@@ -14,7 +14,6 @@ yarn-error.log
 /.vscode
 
 *.DS_Store
-/ray.php
 /storage/debugbar/
 /public/js/filament/filament/app.js
 /public/js/filament/filament/echo.js
