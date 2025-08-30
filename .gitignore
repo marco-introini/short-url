@@ -20,4 +20,5 @@ yarn-error.log
 /public/css/filament/
 /.scribe/
 /public/vendor/
+/public/fonts/filament/
 /resources/views/scribe/index.blade.php
