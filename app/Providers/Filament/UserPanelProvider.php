@@ -67,6 +67,6 @@ class UserPanelProvider extends PanelProvider
                     ->users([
                         'User' => 'user@example.com',
                     ]),
-            ]);;
+            ]);
     }
 }
