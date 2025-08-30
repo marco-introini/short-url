@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Override;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 
@@ -12,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    #[\Override]
+    #[Override]
     public function register()
     {
         //

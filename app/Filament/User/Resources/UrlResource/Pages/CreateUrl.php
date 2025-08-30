@@ -2,6 +2,7 @@
 
 namespace App\Filament\User\Resources\UrlResource\Pages;
 
+use Override;
 use App\Filament\User\Resources\UrlResource;
 use App\Helpers\Shortener;
 use Filament\Resources\Pages\CreateRecord;
@@ -10,7 +11,7 @@ class CreateUrl extends CreateRecord
 {
     protected static string $resource = UrlResource::class;
 
-    #[\Override]
+    #[Override]
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         $data['short_url_string'] = Shortener::shorten($data['original_url']);
@@ -19,7 +20,7 @@ class CreateUrl extends CreateRecord
         return $data;
     }
 
-    #[\Override]
+    #[Override]
     protected function getRedirectUrl(): string
     {
         return $this->getResource()::getUrl('index');

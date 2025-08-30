@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Override;
 use App\Models\Url;
 use App\Models\UrlCall;
 use Illuminate\Http\Resources\Json\JsonResource;
@@ -9,7 +10,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 class UrlResource extends JsonResource
 {
 
-    #[\Override]
+    #[Override]
     public function toArray($request): array
     {
         /** @var Url $this->resource */

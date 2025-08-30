@@ -13,7 +13,7 @@ class UrlCall extends Model
     protected $guarded = [];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\Url, $this>
+     * @return BelongsTo<Url, $this>
      */
     public function url(): BelongsTo
     {

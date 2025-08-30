@@ -44,7 +44,7 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\Url, $this>
+     * @return HasMany<Url, $this>
      */
     public function urls(): HasMany
     {

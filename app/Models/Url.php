@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Override;
 use App\Models\Scopes\UrlByUserScope;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
@@ -15,14 +16,14 @@ class Url extends Model
 
     protected $guarded = [];
 
-    #[\Override]
+    #[Override]
     protected static function booted(): void
     {
         static::addGlobalScope(new UrlByUserScope);
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\App\Models\User, $this>
+     * @return BelongsTo<User, $this>
      */
     public function user(): BelongsTo
     {
@@ -30,7 +31,7 @@ class Url extends Model
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany<\App\Models\UrlCall, $this>
+     * @return HasMany<UrlCall, $this>
      */
     public function url_calls(): HasMany
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Override;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -20,7 +21,7 @@ class UrlRequest extends FormRequest
         return true;
     }
 
-    #[\Override]
+    #[Override]
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(
