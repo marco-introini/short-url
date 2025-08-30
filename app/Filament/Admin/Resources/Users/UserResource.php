@@ -64,7 +64,7 @@ class UserResource extends Resource
                     ->searchable(),
                 TextColumn::make('urls_count')
                     ->counts('urls')
-                    ->label('Numbers of URLs')
+                    ->label('Number of URLs')
                     ->sortable(),
             ])
             ->filters([
