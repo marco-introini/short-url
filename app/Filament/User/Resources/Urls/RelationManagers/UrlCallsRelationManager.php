@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\User\Resources\UrlResource\RelationManagers;
+namespace App\Filament\User\Resources\Urls\RelationManagers;
 
 use Override;
 use Filament\Schemas\Schema;

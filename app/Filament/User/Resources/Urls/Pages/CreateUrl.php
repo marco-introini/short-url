@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Filament\User\Resources\UrlResource\Pages;
+namespace App\Filament\User\Resources\Urls\Pages;
 
 use Override;
-use App\Filament\User\Resources\UrlResource;
+use App\Filament\User\Resources\Urls\UrlResource;
 use App\Helpers\Shortener;
 use Filament\Resources\Pages\CreateRecord;
 

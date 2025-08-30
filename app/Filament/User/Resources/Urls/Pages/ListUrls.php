@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Filament\User\Resources\UrlResource\Pages;
+namespace App\Filament\User\Resources\Urls\Pages;
 
-use App\Filament\User\Resources\UrlResource;
+use App\Filament\User\Resources\Urls\UrlResource;
 use Filament\Actions\CreateAction;
 use Filament\Resources\Pages\ListRecords;
 

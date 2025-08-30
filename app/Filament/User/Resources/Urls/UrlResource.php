@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\User\Resources;
+namespace App\Filament\User\Resources\Urls;
 
 use Override;
 use Filament\Schemas\Schema;
@@ -8,10 +8,10 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteBulkAction;
-use App\Filament\User\Resources\UrlResource\Pages\CreateUrl;
-use App\Filament\User\Resources\UrlResource\Pages\EditUrl;
-use App\Filament\User\Resources\UrlResource\Pages\ListUrls;
-use App\Filament\User\Resources\UrlResource\RelationManagers\UrlCallsRelationManager;
+use App\Filament\User\Resources\Urls\Pages\CreateUrl;
+use App\Filament\User\Resources\Urls\Pages\EditUrl;
+use App\Filament\User\Resources\Urls\Pages\ListUrls;
+use App\Filament\User\Resources\Urls\RelationManagers\UrlCallsRelationManager;
 use App\Models\Url;
 use App\Models\User;
 use Filament\Forms;

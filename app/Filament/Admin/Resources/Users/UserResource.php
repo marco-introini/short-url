@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Filament\Admin\Resources;
+namespace App\Filament\Admin\Resources\Users;
 
 use Override;
 use Filament\Schemas\Schema;
@@ -10,9 +10,9 @@ use Filament\Forms\Components\Toggle;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteBulkAction;
-use App\Filament\Admin\Resources\UserResource\Pages\CreateUser;
-use App\Filament\Admin\Resources\UserResource\Pages\EditUser;
-use App\Filament\Admin\Resources\UserResource\Pages\ListUsers;
+use App\Filament\Admin\Resources\Users\Pages\CreateUser;
+use App\Filament\Admin\Resources\Users\Pages\EditUser;
+use App\Filament\Admin\Resources\Users\Pages\ListUsers;
 use App\Models\User;
 use Filament\Forms;
 use Filament\Resources\Resource;

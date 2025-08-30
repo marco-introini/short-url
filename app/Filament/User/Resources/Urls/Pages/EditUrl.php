@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Filament\Admin\Resources\UserResource\Pages;
+namespace App\Filament\User\Resources\Urls\Pages;
 
+use App\Filament\User\Resources\Urls\UrlResource;
 use Filament\Actions\DeleteAction;
-use App\Filament\Admin\Resources\UserResource;
-use Filament\Pages\Actions;
 use Filament\Resources\Pages\EditRecord;
 
-class EditUser extends EditRecord
+class EditUrl extends EditRecord
 {
-    protected static string $resource = UserResource::class;
+    protected static string $resource = UrlResource::class;
 
     protected function getHeaderActions(): array
     {
@@ -22,5 +21,4 @@ class EditUser extends EditRecord
     {
         return $this->getResource()::getUrl('index');
     }
-
 }
