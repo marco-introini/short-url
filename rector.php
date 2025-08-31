@@ -23,6 +23,7 @@ return RectorConfig::configure()
         AddGenericReturnTypeToRelationsRector::class,
         AnonymousMigrationsRector::class,
     ])
+    ->withImportNames(removeUnusedImports: true)
     ->withSets([
         LaravelLevelSetList::UP_TO_LARAVEL_120,
     ]);
