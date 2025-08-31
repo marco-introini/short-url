@@ -70,7 +70,7 @@
                     </h5>
                     <form action="https://github.com/marco-introini/short-url">
                         <button type="submit"
-                                class="inline-flex items-center justify-center px-8 py-4 mr-6 text-xl font-medium tracking-wide text-white transition duration-200 bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-none"
+                                class="inline-flex items-center justify-center px-8 py-4 mr-6 text-xl font-medium tracking-wide text-white transition duration-200 bg-green-400 hover:bg-green-500 focus:shadow-outline focus:outline-hidden"
                                 data-primary="green-400" data-rounded="">View on GitHub
                         </button>
                     </form>
@@ -89,7 +89,7 @@
                 <p class="w-full mb-5 text-base text-center text-green-600 lg:text-left lg:w-48 lg:mb-0"
                    data-primary="green-400">An OS Software by <br>Marco Introini</p>
                 <a href="https://marcointroini.it"
-                   class="flex-shrink-0 px-4 py-3 text-white bg-green-500 border-green-700"
+                   class="shrink-0 px-4 py-3 text-white bg-green-500 border-green-700"
                    data-primary="green-400" data-rounded="">Visit Home Page</a>
             </div>
             <div class="hidden w-2/3 lg:block"></div>
