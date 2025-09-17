@@ -19,6 +19,8 @@ class UrlCallsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'created_at';
 
+    protected static ?string $title = 'Last Calls';
+
     #[Override]
     public function form(Schema $schema): Schema
     {
