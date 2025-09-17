@@ -2,6 +2,7 @@
 
 namespace App\Filament\User\Resources\Urls;
 
+use Filament\Infolists\Components\TextEntry;
 use Override;
 use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
@@ -32,8 +33,15 @@ class UrlResource extends Resource
     {
         return $schema
             ->components([
-                TextInput::make('original_url')->url()->required(),
-            ])->columns(1);
+                TextInput::make('name')
+                    ->required(),
+                TextEntry::make('shorturl')
+                    ->visibleOn(['edit', 'view']),
+                TextInput::make('original_url')
+                    ->columnSpanFull()
+                    ->url()
+                    ->required(),
+            ])->columns(2);
     }
 
     #[Override]
@@ -41,10 +49,16 @@ class UrlResource extends Resource
     {
         return $table
             ->columns([
-                TextColumn::make('original_url')
+                TextColumn::make('name')
+                    ->label('Short Name')
                     ->sortable()
                     ->searchable(),
-                TextColumn::make('shorturl'),
+                TextColumn::make('shorturl')
+                    ->label('Short URL')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('url_calls_count')
+                    ->counts('url_calls'),
             ])
             ->filters([
                 //
