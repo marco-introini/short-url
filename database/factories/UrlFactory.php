@@ -20,9 +20,10 @@ class UrlFactory extends Factory
         $user = User::inRandomOrder()->first();
 
         return [
-            'original_url' => $originalUrl,
+            'name' => fake()->words(3, true),
+            'original_url' => fake()->url(),
             'short_url_string' => Shortener::shorten($originalUrl),
-            'user_id' => $user->id,
+            'user_id' => User::inRandomOrder()->first()->id ?? User::factory()->create()->id,
         ];
     }
 }
