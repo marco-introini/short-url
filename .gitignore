@@ -23,3 +23,4 @@ yarn-error.log
 /public/fonts/filament/
 /.junie/
 /resources/views/scribe/index.blade.php
+/boost.json

@@ -21,7 +21,7 @@
         "fakerphp/faker": "^1.9.1",
         "knuckleswtf/scribe": "^5",
         "larastan/larastan": "^3.0",
-        "laravel/boost": "^1.0",
+        "laravel/boost": "^1.1",
         "laravel/pint": "^1.0",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^8",
